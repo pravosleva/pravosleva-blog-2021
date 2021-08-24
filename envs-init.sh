@@ -8,7 +8,7 @@ then
 =========================================
 
 👉 CHECK THIS BEFORE START:
-  🔥 STEP 1: ./ecosystem.dev.config.js" &&
+  🔥 ./ecosystem.dev.config.js" &&
       echo "module.exports = {
   apps : [{
     name: 'strapi-1337-dev',
@@ -41,17 +41,17 @@ then
     }
   }],
 };" > ecosystem.dev.config.js &&
-      echo "     🔥 STEP 2 (if you dont use pm2): ./frontend/.env.development" &&
-      echo "REACT_APP_API_ENDPOINT=http://localhost:1337" > frontend/.env.dev &&
+      echo "  🔥 (if you dont use pm2): ./frontend/.env.development" &&
+      echo "REACT_APP_API_ENDPOINT=http://localhost:1337" > frontend/.env.development.local &&
       echo "
-🚀 $ pm2 start ecosystem.dev.config.js
+  🚀 $ pm2 start ecosystem.dev.config.js
 
 =========================================
   PRODUCTION
 =========================================
 
 👉 CHECK THIS BEFORE START:
-  🔥 STEP 1: ./frontend/.env.production" &&
+  🔥 ./frontend/.env.production" &&
       echo "module.exports = {
 apps : [{
   name: 'strapi-1337-prod',
@@ -72,12 +72,27 @@ apps : [{
   }
 }],
 };" > ecosystem.prod.config.js
-      echo "REACT_APP_API_ENDPOINT=http://pravosleva.ru/api" > frontend/.env.prod &&
+      echo "REACT_APP_API_ENDPOINT=http://pravosleva.ru/api" > frontend/.env.production.local &&
+      echo "{
+  \"prod:demo\": {
+    \"user\": \"root\",
+    \"host\": \"pravosleva.ru\",
+    \"port\": \"22\",
+    \"files\": \"./build/*\",
+    \"path\": \"/home/projects/pravosleva-blog/backend/public/cra\",
+    \"pre-deploy-local\": \"yarn build && yarn analyze\"
+  },
+  \"dev\": {},
+  \"staging\": {}
+}
+" > frontend/deploy-app-config.json &&
       echo "
-🚀 $ bash build-all.sh\n
-🚀 $ pm2 start ecosystem.prod.config.js
+  🚀 $ bash build-all.sh\n
+  🚀 $ pm2 start ecosystem.prod.config.js
 
-== END =================================="
+👉 CHECK THIS BEFORE DEPLOY:
+  🔥 ./frontend/deploy-app-config.json
+== END: ENVS INIT is Ok  ================"
     ;;
     *)
     echo "☠️ SCRIPT: envs-init.sh | Undefined param value" &&
@@ -85,6 +100,6 @@ apps : [{
   esac
   exit 0
 else
-  echo "☠️ SCRIPT: envs-init.sh | Param is required! gatsby|nextjs"
+  echo "☠️ SCRIPT: envs-init.sh | Param is required! cra|nextjs"
   exit 1
 fi

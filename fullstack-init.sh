@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "=== FULLSTACK INIT ===" &&
+echo "== FULLSTACK INIT =======================" &&
 
 rm -rf frontend/ &&
 rm -rf backend/ &&
@@ -62,7 +62,7 @@ echo "" &&
 # echo "" &&
 echo "🚀 $ pm2 start ecosystem.prod.config.js" &&
 echo "" &&
-echo "=== 👌" && # rm -rf fullstack-init.sh
+echo "== END: FULLSTACK INIT is Ok 👌 =========" && # rm -rf fullstack-init.sh
 echo "Congrats!" &&
 
 bash build-all-prod.sh
