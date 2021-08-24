@@ -74,10 +74,10 @@ apps : [{
 };" > ecosystem.prod.config.js
       echo "REACT_APP_API_ENDPOINT=http://pravosleva.ru/api" > frontend/.env.prod &&
       echo "
-  🚀 $ bash build-all.sh\n
-  🚀 $ pm2 start ecosystem.prod.config.js
+🚀 $ bash build-all.sh\n
+🚀 $ pm2 start ecosystem.prod.config.js
 
-  ========================================="
+== END =================================="
     ;;
     *)
     echo "☠️ SCRIPT: envs-init.sh | Undefined param value" &&
