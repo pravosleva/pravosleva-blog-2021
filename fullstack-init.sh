@@ -34,7 +34,7 @@ else
 fi
 
 # === LOOK! First param: gatsby|nextjs
-bash envs-init.sh nextjs &&
+bash envs-init.sh cra &&
 yarn --cwd ./frontend envs-init &&
 # ===
 
