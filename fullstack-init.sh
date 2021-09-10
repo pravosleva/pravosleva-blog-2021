@@ -4,19 +4,22 @@ echo "=== FULLSTACK INIT ======================" &&
 rm -rf frontend.cra/ &&
 rm -rf backend/ &&
 rm -rf express-helper/ &&
+rm -rf tg-bot/ &&
 
 rm -rf .git/ &&
 rm -rf .gitignore &&
 rm -rf README.md &&
 
 # Clone reps
-git clone git@github.com:pravosleva/pravosleva-blog-2021-frontend-cra.git frontend.cra &&
+git clone git@github.com:pravosleva/pravosleva-blog-2021-frontend.cra.git frontend.cra &&
 git clone git@github.com:pravosleva/pravosleva-blog-2021-backend.git backend &&
+git clone --branch smartprice git@github.com:pravosleva/express-helper.git express-helper &&
 git clone git@github.com:pravosleva/pravosleva-bot-2021.git tg-bot &&
 
 # Install
 yarn --cwd ./frontend.cra &&
 yarn --cwd ./backend &&
+yarn --cwd ./express-helper &&
 yarn --cwd ./tg-bot &&
 
 # Backend side: Uploads dir init
