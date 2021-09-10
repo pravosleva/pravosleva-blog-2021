@@ -1,4 +1,5 @@
-frontend/
+frontend.*/
 backend/
 express-helper/
+tg-bot/
 *.config.js

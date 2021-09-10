@@ -2,10 +2,11 @@ if [ $# -eq 1 ]
 then
   case $1 in
     "cra")
+      echo "=== START: FULLSTACK INIT ===============" &&
       echo "
-=========================================
+-----------------------------------------
   DEVELOPMENT
-=========================================
+-----------------------------------------
 
 👉 CHECK THIS BEFORE START:
   🔥 ./ecosystem.dev.config.js" &&
@@ -30,28 +31,29 @@ then
     }
   }, {
     name: 'cra-3000',
-    cwd: __dirname + '/frontend',
+    cwd: __dirname + '/frontend.cra',
     script: 'yarn',
     args: 'start',
     interpreter: 'none',
     env: {
       NODE_ENV: 'development',
       PORT: '3000',
-      REACT_APP_API_ENDPOINT: 'http://localhost:1337'
+      REACT_APP_API_ENDPOINT: 'http://localhost:1337',
+      REACT_APP_SOCKET_ENDPOINT: 'http://localhost:1337',
     }
   }],
 };" > ecosystem.dev.config.js &&
-      echo "  🔥 (if you dont use pm2): ./frontend/.env.development" &&
-      echo "REACT_APP_API_ENDPOINT=http://localhost:1337" > frontend/.env.development.local &&
+      echo "  🔥 (if you dont use pm2): ./frontend.cra/.env.development" &&
+      echo "REACT_APP_API_ENDPOINT=http://localhost:1337" > frontend.cra/.env.development.local &&
       echo "
   🚀 $ pm2 start ecosystem.dev.config.js
 
-=========================================
+-----------------------------------------
   PRODUCTION
-=========================================
+-----------------------------------------
 
 👉 CHECK THIS BEFORE START:
-  🔥 ./frontend/.env.production" &&
+  🔥 ./frontend.cra/.env.production" &&
       echo "module.exports = {
 apps : [{
   name: 'strapi-1337-prod',
@@ -72,7 +74,8 @@ apps : [{
   }
 }],
 };" > ecosystem.prod.config.js
-      echo "REACT_APP_API_ENDPOINT=http://pravosleva.ru/api" > frontend/.env.production.local &&
+      echo "REACT_APP_API_ENDPOINT=http://pravosleva.ru/api
+REACT_APP_SOCKET_ENDPOINT=/" > frontend.cra/.env.production.local &&
       echo "{
   \"prod:demo\": {
     \"user\": \"root\",
@@ -85,14 +88,14 @@ apps : [{
   \"dev\": {},
   \"staging\": {}
 }
-" > frontend/deploy-app-config.json &&
+" > frontend.cra/deploy-app-config.json &&
       echo "
   🚀 $ bash build-all.sh\n
   🚀 $ pm2 start ecosystem.prod.config.js
 
 👉 CHECK THIS BEFORE DEPLOY:
-  🔥 ./frontend/deploy-app-config.json
-== END: ENVS INIT is Ok  ================"
+  🔥 ./frontend.cra/deploy-app-config.json
+=== END: ENVS INIT is Ok 👌 ============="
     ;;
     *)
     echo "☠️ SCRIPT: envs-init.sh | Undefined param value" &&
